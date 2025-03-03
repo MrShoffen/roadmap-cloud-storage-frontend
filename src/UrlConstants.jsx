@@ -20,6 +20,6 @@ export const API_FILES_SEARCH  = API_FILES + '/search';
 export const API_DOWNLOAD_FILES  = API_FILES + '/download';
 export const API_MOVE_FILES = API_FILES + '/move';
 
-export const API_USER_INFO = API_BASE_URL + API_CONTEXT + '/users/me';
+export const API_USER_INFO = API_BASE_URL + API_CONTEXT + '/user/me';
 
 export const GITHUB_INFO = window.APP_CONFIG.githubLink
