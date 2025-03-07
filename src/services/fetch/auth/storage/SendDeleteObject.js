@@ -25,6 +25,4 @@ export const sendDeleteObject = async (objectName) => {
         throwSpecifyException(response.status, error);
     }
 
-    return await response.json();
-
 }
