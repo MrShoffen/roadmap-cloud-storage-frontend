@@ -35,21 +35,20 @@ export async function sendUpload(files, updateDownloadTask, updateTask, uploadTa
             },
         });
 
-        let resp = response.data[0];
-
-        if (resp.status !== 201) {
-            console.log("Ошибка при загрузке: " + resp.status);
-            updateTask(uploadTask, "error", resp.detail);
-
+        if (response.status !== 201) {
+            console.log("Ошибка при загрузке: ");
         } else {
             updateTask(uploadTask, "completed", "Загружено");
         }
     } catch (error) {
         console.log(error);
-        if (error.response && error.response.data.status === 413) {
-            throw new StorageExceedException(error.response.data.detail);
+
+        if (error.status === 409) {
+            updateTask(uploadTask, "error", "Файл/папка с таким именем уже существует в целевой папке!");
+
+        } else {
+            updateTask(uploadTask, "error", "Ошибка при загрузке. Попробуйте позже");
         }
-        updateTask(uploadTask, "error", "Ошибка при загрузке. Попробуйте позже");
     }
 
 
